@@ -1,0 +1,11 @@
+---
+
+- name: Add nginx APT key
+  apt_key: url=http://nginx.org/keys/nginx_signing.key
+  register: nginx_nginxrepo_key_installed
+
+- name: Add nginx APT repository
+  apt_repository: repo='deb  http://nginx.org/packages/mainline/ubuntu/ {{ ansible_lsb.codename }} nginx'
+                  state=present update_cache=yes
+  register: nginx_nginxrepo_key_installed
+

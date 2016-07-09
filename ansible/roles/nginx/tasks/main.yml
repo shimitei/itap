@@ -1,0 +1,10 @@
+---
+
+- include: install_nginxrepo.yml
+
+- include: nginx.yml
+
+- include: nginx_sites.yml
+  when: nginx_setup_php is defined and nginx_setup_php == True
+
+- include: nginx.yml

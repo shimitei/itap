@@ -1,0 +1,11 @@
+---
+
+- include: php.yml
+
+- include: php_ini.yml
+
+- include: php_ini_cli.yml
+
+- include: fpm.yml
+
+- include: composer.yml

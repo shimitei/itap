@@ -1,0 +1,17 @@
+---
+- name: itap-devops-workshop
+  hosts: develop
+  become: true
+  remote_user: "vagrant"
+  connection: local
+
+  roles:
+    - packages
+    - php
+    - nginx
+    - supervisord
+  vars_files:
+    - files/development/package.yml
+    - files/development/php.yml
+    - files/development/nginx.yml
+    - files/development/supervisord.yml
