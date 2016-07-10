@@ -2,6 +2,6 @@
 class Speaker
 {
   public static function sayHello() {
-    return 'I love YOKOTE!';
+    return 'I love YOKOTE!!';
   }
 }
