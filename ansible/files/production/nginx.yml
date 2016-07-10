@@ -1,0 +1,20 @@
+---
+
+nginx_sites: [
+  {
+    defaulthost: true,
+    hostname: itap.example.com,
+    docroot: /srv/application/current/webroot,
+    fastcgi_params: {
+      CAKE_ENV: "development"
+    },
+    aliases: []
+  }
+]
+
+nginx_param:
+  worker_rlimit_nofile: 4096
+  worker_connections: 1024
+  tcp_nodelay: "on"
+  client_max_body_size: "5M"
+  keepalive_timeout: 65
