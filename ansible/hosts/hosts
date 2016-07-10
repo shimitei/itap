@@ -1,2 +1,5 @@
 [develop]
 itap.example.com
+
+[provision]
+azure.example.com

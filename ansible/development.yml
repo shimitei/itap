@@ -10,8 +10,10 @@
     - php
     - nginx
     - supervisord
+    - python
   vars_files:
     - files/development/package.yml
     - files/development/php.yml
     - files/development/nginx.yml
     - files/development/supervisord.yml
+    - files/development/python.yml

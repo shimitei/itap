@@ -1,0 +1,18 @@
+---
+
+python_pip_packages:
+  - name: azure
+    version: 2.0.0rc2
+    state: present
+  - name: enum34
+    state: present
+  - name: list
+    state: present
+  - name: markupsafe
+    state: present
+  - name: msrestazure
+    state: present
+  - name: models
+    state: present
+  - name: setuptools
+    state: latest

@@ -12,7 +12,7 @@
     ssh_password_enabled: false
     ssh_public_keys:
       - path: "/home/{{ item.admin_username }}/.ssh/authorized_keys"
-        key_data: "{{ item.ssh_key_data }}"
+        key_data: "{{ lookup('file', 'files/keys/' +  item['admin_username']  + '.pub') }}"
     remove_on_absent: "{{ item.remove_on_absent }}"
     image:
       offer: "{{ item.image.offer }}"
