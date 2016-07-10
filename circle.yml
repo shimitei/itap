@@ -1,0 +1,17 @@
+machine:
+  php:
+    version: 5.5.9
+  timezone:
+    Asia/Tokyo
+  environment:
+    CAKE_ENV: ci
+
+dependencies:
+  cache_directories:
+      - ~/.composer/cache
+  override:
+    - composer install --dev --working-dir $HOME/$CIRCLE_PROJECT_REPONAME/application --prefer-source --no-interaction
+
+test:
+  override:
+    - cd $HOME/$CIRCLE_PROJECT_REPONAME/application; ./vendor/bin/phpunit --configuration phpunit.xml --coverage-html $CIRCLE_TEST_REPORTS/phpunit --coverage-clover $CIRCLE_TEST_REPORTS/phpunit/coverage.xml --log-junit $CIRCLE_TEST_REPORTS/phpunit/unittest.xml
