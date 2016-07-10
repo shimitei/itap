@@ -4,4 +4,4 @@
 /setting.sh
 /.vagrant
 /tmp
-/reports/*
+/application/vendor
