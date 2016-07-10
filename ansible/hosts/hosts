@@ -1,5 +1,2 @@
 [develop]
 itap.example.com
-
-[ansible]
-ansible.example.com

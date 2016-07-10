@@ -1,9 +1,0 @@
----
-- name: ansible
-  hosts: ansible
-  connection: local
-
-  roles:
-    - azure
-  vars_files:
-    - files/azure/resources.yml
