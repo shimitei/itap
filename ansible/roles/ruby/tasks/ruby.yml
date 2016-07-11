@@ -1,0 +1,9 @@
+---
+
+- name: Install Ruby Packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_flattened:
+    - "{{ruby_packages}}"
+    - "{{ruby_option_packages}}"
