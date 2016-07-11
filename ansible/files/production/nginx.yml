@@ -4,7 +4,7 @@ nginx_sites: [
   {
     defaulthost: true,
     hostname: itap.example.com,
-    docroot: /srv/application/current/webroot,
+    docroot: /srv/application/current/application/webroot,
     fastcgi_params: {
       CAKE_ENV: "development"
     },
