@@ -1,0 +1,92 @@
+# Logfile created on 2016-07-11 21:22:55 +0000 by logger.rb/41954
+  INFO ---------------------------------------------------------------------------
+  INFO START 2016-07-11 21:22:55 +0000 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [8909fed6] Running /usr/bin/env mkdir -p /srv/application as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [8909fed6] Command: /usr/bin/env mkdir -p /srv/application
+ DEBUG [8909fed6] 	mkdir: cannot create directory ‘/srv/application’: Permission denied
+  INFO ---------------------------------------------------------------------------
+  INFO START 2016-07-11 21:25:36 +0000 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [c68a037d] Running /usr/bin/env sudo mkdir -p /srv/application as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [c68a037d] Command: /usr/bin/env sudo mkdir -p /srv/application
+  INFO [c68a037d] Finished in 1.548 seconds with exit status 0 (successful).
+  INFO [98cb86c0] Running /usr/bin/env sudo chown azureuser:azureuser /srv/application as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [98cb86c0] Command: /usr/bin/env sudo chown azureuser:azureuser /srv/application
+  INFO [98cb86c0] Finished in 1.316 seconds with exit status 0 (successful).
+  INFO [21f639ab] Running /usr/bin/env mkdir -p /tmp/itap-devops-workshop/ as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [21f639ab] Command: /usr/bin/env mkdir -p /tmp/itap-devops-workshop/
+  INFO [21f639ab] Finished in 0.030 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/itap-devops-workshop/git-ssh.sh 0.0%
+  INFO Uploading /tmp/itap-devops-workshop/git-ssh.sh 100.0%
+  INFO [7e118d2a] Running /usr/bin/env chmod +rx /tmp/itap-devops-workshop/git-ssh.sh as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [7e118d2a] Command: /usr/bin/env chmod +rx /tmp/itap-devops-workshop/git-ssh.sh
+  INFO [7e118d2a] Finished in 0.029 seconds with exit status 0 (successful).
+  INFO [ea153f39] Running /usr/bin/env git ls-remote --heads git@github.com:kaz29/itap.git as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [ea153f39] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/itap-devops-workshop/git-ssh.sh" ; /usr/bin/env git ls-remote --heads git@github.com:kaz29/itap.git )
+ DEBUG [ea153f39] 	Warning: Permanently added 'github.com,192.30.253.112' (RSA) to the list of known hosts.
+ DEBUG [ea153f39] 	59be5d9edde0b5e5e6d9a907f786d63044e32665	refs/heads/master
+bf3ebe2bbae1796e5fa294992573e90738e1d221	refs/heads/provision
+953933d302434420c93be19632db9a905c843e51	refs/heads/step1
+  INFO [ea153f39] Finished in 3.508 seconds with exit status 0 (successful).
+  INFO [3ff65406] Running /usr/bin/env mkdir -p /srv/application/shared /srv/application/releases as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [3ff65406] Command: /usr/bin/env mkdir -p /srv/application/shared /srv/application/releases
+  INFO [3ff65406] Finished in 0.030 seconds with exit status 0 (successful).
+ DEBUG [573a6cc0] Running [ -f /srv/application/current/REVISION ] as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [573a6cc0] Command: [ -f /srv/application/current/REVISION ]
+ DEBUG [573a6cc0] Finished in 0.028 seconds with exit status 1 (failed).
+ DEBUG [19d398b1] Running [ -f /srv/application/repo/HEAD ] as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [19d398b1] Command: [ -f /srv/application/repo/HEAD ]
+ DEBUG [19d398b1] Finished in 0.030 seconds with exit status 1 (failed).
+ DEBUG [969ecbae] Running if test ! -d /srv/application; then echo "Directory does not exist '/srv/application'" 1>&2; false; fi as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [969ecbae] Command: if test ! -d /srv/application; then echo "Directory does not exist '/srv/application'" 1>&2; false; fi
+ DEBUG [969ecbae] Finished in 0.028 seconds with exit status 0 (successful).
+  INFO [a80bc333] Running /usr/bin/env git clone --mirror git@github.com:kaz29/itap.git /srv/application/repo as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [a80bc333] Command: cd /srv/application && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/itap-devops-workshop/git-ssh.sh" ; /usr/bin/env git clone --mirror git@github.com:kaz29/itap.git /srv/application/repo )
+ DEBUG [a80bc333] 	Cloning into bare repository '/srv/application/repo'...
+  INFO [a80bc333] Finished in 4.114 seconds with exit status 0 (successful).
+ DEBUG [4cd667e7] Running if test ! -d /srv/application/repo; then echo "Directory does not exist '/srv/application/repo'" 1>&2; false; fi as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [4cd667e7] Command: if test ! -d /srv/application/repo; then echo "Directory does not exist '/srv/application/repo'" 1>&2; false; fi
+ DEBUG [4cd667e7] Finished in 0.028 seconds with exit status 0 (successful).
+  INFO [3db8ff2e] Running /usr/bin/env git remote update --prune as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [3db8ff2e] Command: cd /srv/application/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/itap-devops-workshop/git-ssh.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [3db8ff2e] 	Fetching origin
+  INFO [3db8ff2e] Finished in 3.229 seconds with exit status 0 (successful).
+ DEBUG [e3ba145e] Running if test ! -d /srv/application/repo; then echo "Directory does not exist '/srv/application/repo'" 1>&2; false; fi as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [e3ba145e] Command: if test ! -d /srv/application/repo; then echo "Directory does not exist '/srv/application/repo'" 1>&2; false; fi
+ DEBUG [e3ba145e] Finished in 0.029 seconds with exit status 0 (successful).
+  INFO [55098559] Running /usr/bin/env mkdir -p /srv/application/releases/20160711212543 as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [55098559] Command: cd /srv/application/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/itap-devops-workshop/git-ssh.sh" ; /usr/bin/env mkdir -p /srv/application/releases/20160711212543 )
+  INFO [55098559] Finished in 0.029 seconds with exit status 0 (successful).
+  INFO [42aa4181] Running /usr/bin/env git archive master | tar -x -f - -C /srv/application/releases/20160711212543 as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [42aa4181] Command: cd /srv/application/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/itap-devops-workshop/git-ssh.sh" ; /usr/bin/env git archive master | tar -x -f - -C /srv/application/releases/20160711212543 )
+  INFO [42aa4181] Finished in 0.130 seconds with exit status 0 (successful).
+ DEBUG [14653957] Running if test ! -d /srv/application/repo; then echo "Directory does not exist '/srv/application/repo'" 1>&2; false; fi as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [14653957] Command: if test ! -d /srv/application/repo; then echo "Directory does not exist '/srv/application/repo'" 1>&2; false; fi
+ DEBUG [14653957] Finished in 0.035 seconds with exit status 0 (successful).
+ DEBUG [107841ea] Running /usr/bin/env git rev-list --max-count=1 master as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [107841ea] Command: cd /srv/application/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/itap-devops-workshop/git-ssh.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [107841ea] 	59be5d9edde0b5e5e6d9a907f786d63044e32665
+ DEBUG [107841ea] Finished in 0.037 seconds with exit status 0 (successful).
+ DEBUG [a71e2d46] Running if test ! -d /srv/application/releases/20160711212543; then echo "Directory does not exist '/srv/application/releases/20160711212543'" 1>&2; false; fi as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [a71e2d46] Command: if test ! -d /srv/application/releases/20160711212543; then echo "Directory does not exist '/srv/application/releases/20160711212543'" 1>&2; false; fi
+ DEBUG [a71e2d46] Finished in 0.028 seconds with exit status 0 (successful).
+  INFO [eed4a0ae] Running /usr/bin/env echo "59be5d9edde0b5e5e6d9a907f786d63044e32665" >> REVISION as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [eed4a0ae] Command: cd /srv/application/releases/20160711212543 && /usr/bin/env echo "59be5d9edde0b5e5e6d9a907f786d63044e32665" >> REVISION
+  INFO [eed4a0ae] Finished in 0.029 seconds with exit status 0 (successful).
+  INFO [c2857456] Running /usr/bin/env ln -s /srv/application/releases/20160711212543 /srv/application/releases/current as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [c2857456] Command: /usr/bin/env ln -s /srv/application/releases/20160711212543 /srv/application/releases/current
+  INFO [c2857456] Finished in 0.037 seconds with exit status 0 (successful).
+  INFO [832a87e1] Running /usr/bin/env mv /srv/application/releases/current /srv/application as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [832a87e1] Command: /usr/bin/env mv /srv/application/releases/current /srv/application
+  INFO [832a87e1] Finished in 0.029 seconds with exit status 0 (successful).
+ DEBUG [2a9c2e3c] Running /usr/bin/env ls -xtr /srv/application/releases as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [2a9c2e3c] Command: /usr/bin/env ls -xtr /srv/application/releases
+ DEBUG [2a9c2e3c] 	20160711212543
+ DEBUG [2a9c2e3c] Finished in 0.030 seconds with exit status 0 (successful).
+ DEBUG [dc9e8991] Running if test ! -d /srv/application/releases; then echo "Directory does not exist '/srv/application/releases'" 1>&2; false; fi as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [dc9e8991] Command: if test ! -d /srv/application/releases; then echo "Directory does not exist '/srv/application/releases'" 1>&2; false; fi
+ DEBUG [dc9e8991] Finished in 0.027 seconds with exit status 0 (successful).
+  INFO [5eddf8f0] Running /usr/bin/env echo "Branch master (at 59be5d9edde0b5e5e6d9a907f786d63044e32665) deployed as release 20160711212543 by vagrant" >> /srv/application/revisions.log as azureuser@itaptest-decrjp.japanwest.cloudapp.azure.com
+ DEBUG [5eddf8f0] Command: cd /srv/application/releases && /usr/bin/env echo "Branch master (at 59be5d9edde0b5e5e6d9a907f786d63044e32665) deployed as release 20160711212543 by vagrant" >> /srv/application/revisions.log
+  INFO [5eddf8f0] Finished in 0.029 seconds with exit status 0 (successful).
