@@ -22,4 +22,5 @@ deployment:
   application:
     branch: cd
     commands:
+      - gem install cap
       - cd $HOME/$CIRCLE_PROJECT_REPONAME/application/deploy; cap production deploy
