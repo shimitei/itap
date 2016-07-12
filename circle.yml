@@ -22,5 +22,5 @@ deployment:
   application:
     branch: cd
     commands:
-      - gem install cap
+      - gem install capistrano
       - cd $HOME/$CIRCLE_PROJECT_REPONAME/application/deploy; cap production deploy
