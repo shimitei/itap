@@ -1,0 +1,54 @@
+---
+
+- name: be sure php5-fpm is stopped and disabled
+  service: name=php5-fpm state=stopped enabled=no
+
+- name: Change php-fpm user 
+  lineinfile:
+    dest: /etc/php5/fpm/pool.d/www.conf
+    state: present
+    regexp: "^user = www-data"
+    line: "user = {{ php_fpm.user }}"
+    backrefs: yes
+    backup: yes
+  notify: restart php-fpm
+
+- name: Change php-fpm group 
+  lineinfile:
+    dest: /etc/php5/fpm/pool.d/www.conf
+    state: present
+    regexp: "^group = www-data"
+    line: "group = {{ php_fpm.group }}"
+    backrefs: yes
+    backup: yes
+  notify: restart php-fpm
+
+- name: Activate php-fpm status 
+  lineinfile:
+    dest: /etc/php5/fpm/pool.d/www.conf
+    state: present
+    regexp: "^;pm.status_path = /status"
+    line: "pm.status_path = /status"
+    backrefs: yes
+    backup: yes
+  notify: restart php-fpm
+
+- name: Activate php-fpm ping 
+  lineinfile:
+    dest: /etc/php5/fpm/pool.d/www.conf
+    state: present
+    regexp: "^;ping.path = /ping"
+    line: "ping.path = /ping"
+    backrefs: yes
+    backup: yes
+  notify: restart php-fpm
+
+- name: Change php-fpm ping response
+  lineinfile:
+    dest: /etc/php5/fpm/pool.d/www.conf
+    state: present
+    regexp: "^;ping.response = pong"
+    line: "ping.response = pong"
+    backrefs: yes
+    backup: yes
+  notify: restart php-fpm

@@ -1,0 +1,8 @@
+---
+- name: Configure supervisord settings for application
+  template: src=supervisord_config.conf
+            dest=/etc/supervisor/conf.d/{{item.name}}.conf
+            owner=root group=root mode=0644
+  with_items: "{{ supervisord_applications }}"
+  when: supervisord_applications is defined
+  notify: restart supervisor

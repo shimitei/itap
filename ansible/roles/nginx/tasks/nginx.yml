@@ -1,0 +1,42 @@
+---
+
+- name: Install nginx Packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_flattened:
+    - "{{ nginx_packages }}"
+    - "{{ nginx_option_packages }}"
+
+- name: be sure nginx is running and enabled
+  service: name=nginx state=running enabled=yes
+
+- name: Change php-fpm listen.owner 
+  lineinfile:
+    dest: /etc/php5/fpm/pool.d/www.conf
+    state: present
+    regexp: "^listen.owner = www-data"
+    line: "listen.owner = nginx"
+    backrefs: yes
+    backup: yes
+  when: nginx_use_phpfpm is defined and nginx_use_phpfpm == True
+  notify: restart nginx
+
+- name: Change php-fpm listen.group 
+  lineinfile:
+    dest: /etc/php5/fpm/pool.d/www.conf
+    state: present
+    regexp: "^listen.group = www-data"
+    line: "listen.group = nginx"
+    backrefs: yes
+    backup: yes
+  when: nginx_use_phpfpm is defined and nginx_use_phpfpm == True
+  notify: restart php-fpm
+
+- name: Configure nginx main confg
+  template: src=nginx_main.j2
+            dest=/etc/nginx/nginx.conf
+            owner=root group=root mode=0644
+  with_items:
+    - nginx_params
+  notify: restart nginx

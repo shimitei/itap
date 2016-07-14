@@ -1,0 +1,105 @@
+---
+
+azure_resource_group:
+  - name: ITAP-workshop
+    region: japanwest
+    state: present
+    tags:
+      testing: testing
+      delete: never
+
+azure_virtual_network:
+  - name: ITAP_workshop_network
+    state: present
+    resource_group: ITAP-workshop
+    address_prefixes_cidr:
+        - "10.1.0.0/16"
+    dns_servers: []
+    tags:
+      testing: testing
+      delete: on-exit
+
+azure_subnet:
+  - name: ITAP_workshop_subnet
+    state: present
+    virtual_network_name: ITAP_workshop_network
+    resource_group: ITAP-workshop
+    address_prefix_cidr: "10.1.2.0/24"
+
+azure_publicipaddress:
+  - name: itaptestip
+    state: present
+    resource_group: ITAP-workshop
+    allocation_method: Static
+    domain_name: itaptest-decrjp
+    tags:
+        testing: testing
+        environment: Production
+
+azure_security_group:
+  - name: ITAP_workshop_secgroup
+    state: present
+    resource_group: ITAP-workshop
+    rules:
+      - name: AllowSSH
+        protocol: Tcp
+        destination_port_range: 22
+        access: Allow
+        priority: 200
+        direction: Inbound
+      - name: AllowHTTP
+        protocol: Tcp
+        destination_port_range: 80
+        access: Allow
+        priority: 201
+        direction: Inbound
+    tags:
+      testing: testing
+
+azure_networkinterface:
+  - name: itaptestnic
+    state: present
+    resource_group: ITAP-workshop
+    virtual_network_name: ITAP_workshop_network
+    subnet_name: ITAP_workshop_subnet
+    security_group_name: ITAP_workshop_secgroup
+    public_ip_address_name: itaptestip
+    private_ip_allocation_method: Static
+    private_ip_address: 10.1.2.10
+    tags:
+      testing: testing
+
+# storage account type : Premium_LRS, Standard_GRS, Standard_LRS, Standard_RAGRS, Standard_ZRS
+azure_storage_account:
+  - name: itapteststorageaccount
+    state: present
+    resource_group: ITAP-workshop
+    type: Standard_LRS
+    tags:
+      testing: testing
+
+azure_storage_container:
+  - name: vhds
+    state: present
+    resource_group: ITAP-workshop
+    storage_account_name: itapteststorageaccount
+    tags:
+      testing: testing
+
+azure_virtualmachine:
+  - name: ITAPVM01
+    state: present
+    resource_group: ITAP-workshop
+    vm_size: Standard_A0
+    storage_account: itapteststorageaccount
+    storage_container_name: vhds
+    network_interfaces: itaptestnic
+    admin_username: azureuser
+    remove_on_absent: []
+    image:
+      offer: UbuntuServer
+      publisher: Canonical
+      sku: '14.04.2-LTS'
+      version: latest
+    tags:
+      testing: testing

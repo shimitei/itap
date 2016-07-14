@@ -1,0 +1,44 @@
+
+user  nginx;
+worker_processes  auto;
+worker_rlimit_nofile  {{ nginx_param['worker_rlimit_nofile'] }};
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  {{ nginx_param['worker_connections'] }};
+    multi_accept on;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+    {% if rsyslog_is_client is defined and rsyslog_is_client and rsyslog_nginx_access_tag %}
+    access_log  syslog:server={{ rsyslog_server }},tag={{ rsyslog_nginx_access_tag }}  main;
+    {% endif %}
+    {% if rsyslog_is_client is defined and rsyslog_is_client and rsyslog_nginx_error_tag %}
+    error_log  /var/log/nginx/error.log  error;
+    error_log  syslog:server={{ rsyslog_server }},tag={{ rsyslog_nginx_error_tag }}  error;
+    {% endif %}
+
+    sendfile  on;
+    tcp_nopush  on;
+    tcp_nodelay  {{ nginx_param['tcp_nodelay'] }};
+
+    keepalive_timeout  {{ nginx_param['keepalive_timeout'] }};
+    server_tokens  off;
+    client_max_body_size  {{ nginx_param['client_max_body_size'] }};
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+}

@@ -1,0 +1,7 @@
+---
+
+- include: repository.yml
+
+- include: ruby.yml
+
+- include: packages.yml

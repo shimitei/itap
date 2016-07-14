@@ -1,0 +1,7 @@
+---
+
+- include: packages.yml
+
+- include: easy_install.yml
+
+- include: pip.yml

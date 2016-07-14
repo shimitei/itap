@@ -1,0 +1,8 @@
+---
+
+ruby_packages:
+  - ruby2.0
+
+ruby_option_packages: []
+
+ruby_gem_packages: []

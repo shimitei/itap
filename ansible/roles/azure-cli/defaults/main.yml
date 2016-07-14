@@ -1,0 +1,5 @@
+---
+
+azure_cli_packages:
+  - nodejs-legacy
+  - npm

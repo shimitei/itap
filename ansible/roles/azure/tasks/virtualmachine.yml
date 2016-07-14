@@ -1,0 +1,26 @@
+---
+
+- name: Create VM
+  azure_rm_virtualmachine:
+    name: "{{ item.name }}"
+    resource_group: "{{ item.resource_group }}"
+    vm_size: "{{ item.vm_size }}"
+    storage_account: "{{ item.storage_account }}"
+    storage_container_name: "{{ item.storage_container_name }}"
+    network_interfaces: "{{ item.network_interfaces }}"
+    admin_username: "{{ item.admin_username }}"
+    ssh_password_enabled: false
+    ssh_public_keys:
+      - path: "/home/{{ item.admin_username }}/.ssh/authorized_keys"
+        key_data: "{{ lookup('file', 'files/keys/' +  item['admin_username']  + '.pub') }}"
+    remove_on_absent: "{{ item.remove_on_absent }}"
+    image:
+      offer: "{{ item.image.offer }}"
+      publisher: "{{ item.image.publisher }}"
+      sku: "{{ item.image.sku }}"
+      version: "{{ item.image.version }}"
+    tags: "{{ item.tags }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ azure_virtualmachine }}"
+  when: azure_virtual_network is defined

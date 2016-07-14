@@ -1,0 +1,11 @@
+---
+
+- name: Create storage container
+  azure_rm_storageblob:
+    container_name: "{{ item.name }}"
+    resource_group: "{{ item.resource_group }}"
+    storage_account_name: "{{ item.storage_account_name }}"
+    tags: "{{ item.tags }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ azure_storage_container }}"

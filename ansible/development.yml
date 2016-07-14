@@ -1,0 +1,22 @@
+---
+- name: itap-devops-workshop
+  hosts: develop
+  become: true
+  remote_user: "vagrant"
+  connection: local
+
+  roles:
+    - packages
+    - azure-cli
+    - php
+    - nginx
+    - supervisord
+    - python
+    - ruby
+  vars_files:
+    - files/development/package.yml
+    - files/development/php.yml
+    - files/development/nginx.yml
+    - files/development/supervisord.yml
+    - files/development/python.yml
+    - files/development/ruby.yml

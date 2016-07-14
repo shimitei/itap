@@ -1,0 +1,9 @@
+---
+- name: provision
+  hosts: provision
+  connection: local
+
+  roles:
+    - azure
+  vars_files:
+    - files/azure/resources.yml

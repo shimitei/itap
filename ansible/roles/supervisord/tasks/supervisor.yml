@@ -1,0 +1,9 @@
+---
+
+- name: Install supervisord Packages
+  apt:
+    name: supervisor
+    state: present
+
+- name: be sure supervisor is running and enabled
+  service: name=supervisor state=running enabled=yes

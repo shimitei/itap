@@ -1,0 +1,4 @@
+---
+
+ruby_gem_packages:
+  - name: capistrano

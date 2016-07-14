@@ -1,0 +1,9 @@
+---
+
+- name: Install Python Packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_flattened:
+    - "{{ python_packages }}"
+    - "{{ python_option_packages }}"

@@ -1,0 +1,17 @@
+---
+
+python_packages:
+  - python-setuptools
+  - libffi-dev
+  - libssl-dev
+  - python-dev
+  - build-essential
+
+python_option_packages: []
+
+python_easy_install_packages:
+  - pip
+
+python_easy_install_option_packages: []
+
+python_pip_packages: []

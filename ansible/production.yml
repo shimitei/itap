@@ -1,0 +1,16 @@
+---
+- name: itap-devops-workshop-production
+  hosts: production
+  become: true
+  remote_user: "azureuser"
+
+  roles:
+    - packages
+    - php
+    - nginx
+    - supervisord
+  vars_files:
+    - files/production/package.yml
+    - files/production/php.yml
+    - files/production/nginx.yml
+    - files/production/supervisord.yml

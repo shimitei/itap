@@ -1,0 +1,7 @@
+.DS_Store
+/.python-version
+*.retry
+/setting.sh
+/.vagrant
+/tmp
+/application/vendor

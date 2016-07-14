@@ -1,0 +1,9 @@
+---
+
+- name: Install Python easy_install Packages
+  easy_install:
+    name: "{{ item }}"
+    state: present
+  with_flattened:
+    - "{{ python_easy_install_packages }}"
+    - "{{ python_easy_install_option_packages }}"
