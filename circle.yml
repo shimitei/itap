@@ -17,3 +17,10 @@ dependencies:
 test:
   override:
     - cd $HOME/$CIRCLE_PROJECT_REPONAME/application; ./vendor/bin/phpunit --configuration phpunit.xml --coverage-html $CIRCLE_TEST_REPORTS/phpunit --coverage-clover $CIRCLE_TEST_REPORTS/phpunit/coverage.xml --log-junit $CIRCLE_TEST_REPORTS/phpunit/unittest.xml
+
+deployment:
+  application:
+    branch: cd
+    commands:
+      - gem install capistrano
+      - cd $HOME/$CIRCLE_PROJECT_REPONAME/application/deploy; cap production deploy
