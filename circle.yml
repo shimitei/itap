@@ -20,7 +20,7 @@ test:
 
 deployment:
   application:
-    branch: cd
+    branch: feature/auto_deploy
     commands:
       - gem install capistrano
       - cd $HOME/$CIRCLE_PROJECT_REPONAME/application/deploy; cap production deploy
